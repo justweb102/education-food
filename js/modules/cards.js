@@ -131,4 +131,5 @@ function cards(){
 }
 
 
-module.exports = cards;
+// module.exports = cards;
+export default cards;

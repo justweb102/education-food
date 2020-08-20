@@ -90,9 +90,11 @@
 /*!****************************!*\
   !*** ./js/modules/calc.js ***!
   \****************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
 function calc(){
     // Калькулятор
 
@@ -207,7 +209,8 @@ function calc(){
 }
 
 
-module.exports = calc;
+// module.exports = calc;
+/* harmony default export */ __webpack_exports__["default"] = (calc);
 
 /***/ }),
 
@@ -215,9 +218,11 @@ module.exports = calc;
 /*!*****************************!*\
   !*** ./js/modules/cards.js ***!
   \*****************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
 function cards(){
     // Используем классы для карточек
 
@@ -351,7 +356,8 @@ function cards(){
 }
 
 
-module.exports = cards;
+// module.exports = cards;
+/* harmony default export */ __webpack_exports__["default"] = (cards);
 
 /***/ }),
 
@@ -359,8 +365,14 @@ module.exports = cards;
 /*!*****************************!*\
   !*** ./js/modules/forms.js ***!
   \*****************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _modal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modal */ "./js/modules/modal.js");
+
+
 
 function forms(){
     // формы
@@ -490,7 +502,7 @@ function forms(){
         let prevModalDialog = document.querySelector('.modal__dialog');
 
         prevModalDialog.classList.add('hide');
-        modalOpenFunc();
+        Object(_modal__WEBPACK_IMPORTED_MODULE_0__["modalOpenFunc"])();
 
         let thanksModal = document.createElement('div');
         thanksModal.classList.add('modal__dialog');
@@ -506,13 +518,14 @@ function forms(){
             thanksModal.remove();
             prevModalDialog.classList.add('show');
             prevModalDialog.classList.remove('hide');
-            modalCloseFunc();
+            Object(_modal__WEBPACK_IMPORTED_MODULE_0__["modalCloseFunc"])();
         }, 4000);
     }
 }
 
 
-module.exports = forms;
+// module.exports = forms;
+/* harmony default export */ __webpack_exports__["default"] = (forms);
 
 /***/ }),
 
@@ -520,37 +533,44 @@ module.exports = forms;
 /*!*****************************!*\
   !*** ./js/modules/modal.js ***!
   \*****************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: default, modalOpenFunc, modalCloseFunc */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-function modal(){
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "modalOpenFunc", function() { return modalOpenFunc; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "modalCloseFunc", function() { return modalCloseFunc; });
+let modalOpenFunc = (modalSelector) => {
+    let modal = document.querySelector(modalSelector);
+    
+    // console.log(e.target.classList);
+    modal.classList.add('show');
+    modal.classList.remove('hide');
+    // modal.classList.toggle('show');
+    document.body.style.overflow = 'hidden';
+
+    // clearTimeout(modalTimerStart);
+};
+
+let modalCloseFunc = (modalSelector) => {
+    let modal = document.querySelector(modalSelector);
+    
+    // modal.style.display = 'none';
+    modal.classList.remove('show');
+    modal.classList.add('hide');
+    document.body.style.overflow = '';
+};
+
+
+function modal(triggerSelector, modalSelector){
     // modal
 
-    let modal = document.querySelector('.modal'),
-        modalOpenBtn = document.querySelectorAll('[data-modal]');
+    let modal = document.querySelector(modalSelector),
+        modalOpenBtn = document.querySelectorAll(triggerSelector);
         // modalCloseBtn = document.querySelector('[data-close]');
 
-    let modalOpenFunc = () => {
-        // console.log(e.target.classList);
-        modal.classList.add('show');
-        modal.classList.remove('hide');
-        // modal.classList.toggle('show');
-        document.body.style.overflow = 'hidden';
-
-        // clearTimeout(modalTimerStart);
-    };
-
-    let modalCloseFunc = () => {
-        // modal.style.display = 'none';
-        modal.classList.remove('show');
-        modal.classList.add('hide');
-        document.body.style.overflow = '';
-    };
-
-
-
     modalOpenBtn.forEach(item => {
-        item.addEventListener('click', modalOpenFunc);
+        item.addEventListener('click', () => modalOpenFunc(modalSelector));
     });
 
 
@@ -560,14 +580,14 @@ function modal(){
     modal.addEventListener('click', e => {
         // if(e.target.classList.contains('modal')){
         if(e.target.classList.contains('modal') || e.target.getAttribute('data-close') == ''){
-            modalCloseFunc();
+            modalCloseFunc(modalSelector);
         }
     });
 
 
     document.addEventListener('keydown', e => {
         if(e.code === 'Escape' && modal.classList.contains('show')){
-            modalCloseFunc();
+            modalCloseFunc(modalSelector);
         }
     });
 
@@ -583,7 +603,7 @@ function modal(){
 
     let modalShowByScroll = () => {
         if(window.pageYOffset + document.documentElement.clientHeight >= document.documentElement.scrollHeight){
-            modalOpenFunc();
+            modalOpenFunc(modalSelector);
             window.removeEventListener('scroll', modalShowByScroll);
         }
     }
@@ -593,7 +613,10 @@ function modal(){
 }
 
 
-module.exports = modal;
+// module.exports = modal;
+/* harmony default export */ __webpack_exports__["default"] = (modal);
+
+
 
 /***/ }),
 
@@ -601,9 +624,11 @@ module.exports = modal;
 /*!******************************!*\
   !*** ./js/modules/slider.js ***!
   \******************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
 function slider(){
     // Slider
 
@@ -703,7 +728,8 @@ function slider(){
 }
 
 
-module.exports = slider;
+// module.exports = slider;
+/* harmony default export */ __webpack_exports__["default"] = (slider);
 
 /***/ }),
 
@@ -711,9 +737,11 @@ module.exports = slider;
 /*!****************************!*\
   !*** ./js/modules/tabs.js ***!
   \****************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
 function tabs(){
     let tabs = document.querySelectorAll('.tabheader__item'),
         tabsContent = document.querySelectorAll('.tabcontent'),
@@ -758,7 +786,8 @@ function tabs(){
 }
 
 
-module.exports = tabs;
+// module.exports = tabs;
+/* harmony default export */ __webpack_exports__["default"] = (tabs);
 
 /***/ }),
 
@@ -766,9 +795,11 @@ module.exports = tabs;
 /*!*****************************!*\
   !*** ./js/modules/timer.js ***!
   \*****************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
 function timer(){
     // timer
 
@@ -831,7 +862,8 @@ function timer(){
 }
 
 
-module.exports = timer;
+// module.exports = timer;
+/* harmony default export */ __webpack_exports__["default"] = (timer);
 
 /***/ }),
 
@@ -839,28 +871,46 @@ module.exports = timer;
 /*!**********************!*\
   !*** ./js/script.js ***!
   \**********************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _modules_tabs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/tabs */ "./js/modules/tabs.js");
+/* harmony import */ var _modules_modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/modal */ "./js/modules/modal.js");
+/* harmony import */ var _modules_timer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/timer */ "./js/modules/timer.js");
+/* harmony import */ var _modules_cards__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/cards */ "./js/modules/cards.js");
+/* harmony import */ var _modules_calc__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/calc */ "./js/modules/calc.js");
+/* harmony import */ var _modules_forms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/forms */ "./js/modules/forms.js");
+/* harmony import */ var _modules_slider__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/slider */ "./js/modules/slider.js");
+
+
+
+
+
+
+
+
+
 
 
 window.addEventListener('DOMContentLoaded', () => {
-    let tabs = __webpack_require__(/*! ./modules/tabs */ "./js/modules/tabs.js"),
-        modal = __webpack_require__(/*! ./modules/modal */ "./js/modules/modal.js"),
-        timer = __webpack_require__(/*! ./modules/timer */ "./js/modules/timer.js"),
-        cards = __webpack_require__(/*! ./modules/cards */ "./js/modules/cards.js"),
-        calc = __webpack_require__(/*! ./modules/calc */ "./js/modules/calc.js"),
-        forms = __webpack_require__(/*! ./modules/forms */ "./js/modules/forms.js"),
-        slider = __webpack_require__(/*! ./modules/slider */ "./js/modules/slider.js");
+    // let tabs = require('./modules/tabs'),
+    //     modal = require('./modules/modal'),
+    //     timer = require('./modules/timer'),
+    //     cards = require('./modules/cards'),
+    //     calc = require('./modules/calc'),
+    //     forms = require('./modules/forms'),
+    //     slider = require('./modules/slider');
 
-    tabs();
-    modal();
-    timer();
-    cards();
-    calc();
-    forms();
-    slider();
+
+    Object(_modules_tabs__WEBPACK_IMPORTED_MODULE_0__["default"])();
+    Object(_modules_modal__WEBPACK_IMPORTED_MODULE_1__["default"])('[data-modal]', '.modal');
+    Object(_modules_timer__WEBPACK_IMPORTED_MODULE_2__["default"])();
+    Object(_modules_cards__WEBPACK_IMPORTED_MODULE_3__["default"])();
+    Object(_modules_calc__WEBPACK_IMPORTED_MODULE_4__["default"])();
+    Object(_modules_forms__WEBPACK_IMPORTED_MODULE_5__["default"])();
+    Object(_modules_slider__WEBPACK_IMPORTED_MODULE_6__["default"])();
 
 
 

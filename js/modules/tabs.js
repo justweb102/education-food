@@ -42,4 +42,5 @@ function tabs(){
 }
 
 
-module.exports = tabs;
+// module.exports = tabs;
+export default tabs;

@@ -1,3 +1,6 @@
+import {modalOpenFunc} from './modal';
+import {modalCloseFunc} from './modal';
+
 function forms(){
     // формы
 
@@ -148,4 +151,5 @@ function forms(){
 }
 
 
-module.exports = forms;
+// module.exports = forms;
+export default forms;
