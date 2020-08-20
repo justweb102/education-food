@@ -1,5 +1,8 @@
 "use strict";
 
+require('es6-promise').polyfill();
+import 'nodelist-foreach-polyfill';
+
 import tabs from './modules/tabs';
 import modal from './modules/modal';
 import timer from './modules/timer';
@@ -7,6 +10,7 @@ import cards from './modules/cards';
 import calc from './modules/calc';
 import forms from './modules/forms';
 import slider from './modules/slider';
+import {modalOpenFunc} from './modules/modal'
 
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -18,21 +22,31 @@ window.addEventListener('DOMContentLoaded', () => {
     //     forms = require('./modules/forms'),
     //     slider = require('./modules/slider');
 
+    let modalTimerStart = setTimeout(() => modalOpenFunc('.modal', modalTimerStart), 300000);
 
-    tabs();
-    modal('[data-modal]', '.modal');
-    timer();
+    tabs('.tabheader__item', '.tabcontent', '.tabheader__items', 'tabheader__item_active');
+    modal('[data-modal]', '.modal', modalTimerStart);
+    timer('.timer', '2020-06-11');
     cards();
     calc();
-    forms();
-    slider();
+    forms('form', modalTimerStart);
+    slider({
+        container: '.offer__slider',
+        slide: '.offer__slide',
+        nextArrow: '.offer__slider-next',
+        prevArrow: '.offer__slider-prev',
+        totalCounter: '#total',
+        currentCounter: '#current',
+        wrapper: '.offer__slider-wrapper',
+        field: '.offer__slider-inner',
+    });
 
 
 
 
-    fetch('http://localhost:3000/menu')
-        .then(data => data.json())
-        .then(res => console.log(res));
+    // fetch('http://localhost:3000/menu')
+    //     .then(data => data.json())
+    //     .then(res => console.log(res));
 
     
 });

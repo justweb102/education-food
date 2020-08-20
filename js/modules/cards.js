@@ -1,3 +1,5 @@
+import {getResource} from '../services/services';
+
 function cards(){
     // Используем классы для карточек
 
@@ -49,15 +51,7 @@ function cards(){
 
 
 
-    let getResource = async (url) => {
-        let res = await fetch(url);
 
-        if(!res.ok){
-            throw new Error(`Не могу fetch по адресу ${url}, статус ${res.status}`);
-        }
-
-        return await res.json();
-    }
 
 
     // getResource('http://localhost:3000/menu')
